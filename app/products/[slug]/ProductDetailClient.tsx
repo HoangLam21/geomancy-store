@@ -82,7 +82,7 @@ export default function ProductDetailClient({
   const validImages = images.length > 0 ? images : ["/images/placeholder.jpg"];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 bg-white">
+    <div className="mx-auto px-4 py-8 bg-white">
       {/* Breadcrumb */}
       <div className="mb-6 flex items-center gap-2 text-sm text-black">
         <span>Home</span>

@@ -3,95 +3,34 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ProductCard } from '@/components/card/ProductCard';
-
-const products = [
-  {
-    id: 1,
-    slug: 'onyx-bracelet',
-    image: '/images/3.jpg',
-    name: 'Onyx Bracelet', // Đổi từ 'title' sang 'name'
-    material: 'Onyx', // Đổi từ 'subtitle' sang 'material'
-    price: 870000,
-    category: 'new',
-  },
-  {
-    id: 2,
-    slug: 'rose-quartz-bracelet',
-    image: '/images/4.jpg',
-    name: 'Rose Quartz Bracelet',
-    material: 'Quartz',
-    price: 680000,
-    category: 'new',
-  },
-  {
-    id: 3,
-    slug: 'amethyst-bracelet',
-    image: '/images/5.jpg',
-    name: 'Amethyst Bracelet',
-    material: 'Quartz',
-    price: 680000,
-    category: 'sale',
-    originalPrice: 850000,
-  },
-  {
-    id: 4,
-    slug: 'aquamarine-bracelet',
-    image: '/images/6.jpg',
-    name: 'Aquamarine Bracelet',
-    material: 'Aquamarine',
-    price: 680000,
-    category: 'best',
-  },
-  {
-    id: 5,
-    slug: 'tiger-eye-bracelet',
-    image: '/images/3.jpg',
-    name: 'Tiger Eye Bracelet',
-    material: 'Tiger Eye',
-    price: 750000,
-    category: 'best',
-  },
-  {
-    id: 6,
-    slug: 'jade-bracelet',
-    image: '/images/4.jpg',
-    name: 'Jade Bracelet',
-    material: 'Jade',
-    price: 890000,
-    category: 'sale',
-    originalPrice: 1200000,
-  },
-  {
-    id: 7,
-    slug: 'citrine-bracelet',
-    image: '/images/5.jpg',
-    name: 'Citrine Bracelet',
-    material: 'Citrine',
-    price: 720000,
-    category: 'new',
-  },
-  {
-    id: 8,
-    slug: 'turquoise-bracelet',
-    image: '/images/6.jpg',
-    name: 'Turquoise Bracelet',
-    material: 'Turquoise',
-    price: 820000,
-    category: 'best',
-  },
-];
+import { products } from '@/product';
 
 const tabs = [
-  { id: 'new', label: 'NEW ARRIVALS' },
+  { id: 'new', label: 'RECOMMEND FOR YOU' },
   { id: 'best', label: 'BEST SELLER' },
   { id: 'sale', label: 'ON SALE' },
 ];
+
+// Create category mapping based on your existing products
+const productCategories: Record<number, string> = {
+  1: 'sale',  // GREEN JADE BRACELET - has originalPrice
+  2: 'best',  // AQUAMARINE BRACELET
+  3: 'new',   // ROSE QUARTZ BRACELET
+  4: 'sale',  // FIRE GUARDIAN CHARM - has originalPrice
+  5: 'best',  // ONYX BRACELET
+  6: 'new',   // AMETHYST BRACELET
+  7: 'new',   // ROSE QUARTZ BRACELET 2
+  8: 'best',  // FIRE GUARDIAN CHARM 2
+  9: 'best',  // TIGER'S EYE BRACELET
+  10: 'sale', // CITRINE BRACELET - has originalPrice
+  11: 'new',  // LAPIS LAZULI BRACELET
+};
 
 export function ProductsSection() {
   const [activeTab, setActiveTab] = useState('new');
 
   const filteredProducts = products.filter(
-    (product) => product.category === activeTab
+    (product) => productCategories[product.id] === activeTab
   );
 
   return (
